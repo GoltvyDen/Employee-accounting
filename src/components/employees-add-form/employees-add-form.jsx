@@ -18,9 +18,13 @@ class EmployeesAddForm extends Component {
 
     
     onSubmit = (e) => {
-        const {name, salary} = this.state;
         e.preventDefault();
-        this.props.onAdd(name,salary);
+        const {name, salary} = this.state;
+        if(name < 3 || !salary) {
+            alert('Некоректное личное имя сотрудника / значение зарплаты');
+            return;
+        }
+        this.props.onAdd(name, salary);      
         this.setState({
             name: '',
             salary: ''
