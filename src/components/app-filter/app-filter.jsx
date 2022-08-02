@@ -1,23 +1,31 @@
 import "./app-filter.css";
 
-const AppFilter = () => {
+const AppFilter = (props) => {
+    const buttonsData = [
+        {name: 'all', label:'Все сотрдуники'},
+        {name: 'rise', label:'На повышение'},
+        {name: 'salary', label:'З/П больше 1500$'}
+    ];
+
+    const buttons = buttonsData.map(({name, label}) => {
+        const activeBtn = props.filter === name;
+        const clazz = activeBtn ? 'btn-light' : 'btn-outline-light';
+
+        return (
+            <button 
+                type="button"
+                className={`btn ${clazz}`}
+                key={name}
+                onClick={() => props.onUpdateFilter(name)}>
+                {label}
+            </button>
+        )
+    })
+
+
     return (
         <div className="btn-group">
-            <button 
-                type="button"
-                className="btn btn-light">
-                        Все сотрудники
-            </button>
-            <button 
-                type="button"
-                className="btn btn-outline-light">
-                    На повышение
-            </button>
-            <button 
-                type="button"
-                className="btn btn-outline-light">
-                    З/П больше 1000$
-            </button>
+            {buttons}
         </div>
     )
 }
