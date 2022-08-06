@@ -28,11 +28,12 @@ class App extends Component {
     }
 
     changeSalary = (newSalary, name) => {
+        let newSalaryValue = parseInt(newSalary);
         console.log(1);
         this.setState(({ data }) => ({
             data: data.map(person => {
                 if (person.name === name) {
-                    return {...person, salary: newSalary}
+                    return {...person, salary: newSalaryValue}
                 }
                 return person
             })
@@ -121,7 +122,7 @@ class App extends Component {
                     data={visibleData}
                     onDelete={this.deleteItem}
                     onToggleProp={this.onToggleProp}
-                    changeSalary={this.changeSalary}/>
+                    changeSalary={this.changeSalary}/>  
                 <EmployeesAddForm onAdd={this.addItem}/>
             </div>
         );
