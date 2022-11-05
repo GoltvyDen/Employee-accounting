@@ -29,7 +29,6 @@ class App extends Component {
 
     changeSalary = (newSalary, name) => {
         let newSalaryValue = parseInt(newSalary);
-        console.log(1);
         this.setState(({ data }) => ({
             data: data.map(person => {
                 if (person.name === name) {
@@ -38,6 +37,12 @@ class App extends Component {
                 return person
             })
         }))
+    }
+
+    addDollar = (e) => {
+        if (e.target.value.slice(-1) !== '$') {
+            e.target.value += '$'
+        } 
     }
 
     deleteItem = (id) => {
@@ -122,7 +127,8 @@ class App extends Component {
                     data={visibleData}
                     onDelete={this.deleteItem}
                     onToggleProp={this.onToggleProp}
-                    changeSalary={this.changeSalary}/>  
+                    changeSalary={this.changeSalary}
+                    addDollar={this.addDollar}/>  
                 <EmployeesAddForm onAdd={this.addItem}/>
             </div>
         );
